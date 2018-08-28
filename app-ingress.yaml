@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: app-ingress
+spec:
+  tls:
+  - hosts:
+    - app.example.com
+    secretName: app-secret
+  rules:
+  - host: app.example.com
+    http:
+      paths:
+      - path: /endpoint
+        backend:
+          serviceName: nginximage-svc
+          servicePort: 80
+      - path: /endpoint2
+        backend:
+          serviceName: nginximage2-svc
+          servicePort: 80
